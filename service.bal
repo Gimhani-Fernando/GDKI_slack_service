@@ -15,6 +15,12 @@ function initializeSlackClient() returns slack:Client | error {
 
 final slack:Client slackClient = check initializeSlackClient();
 
+@http:ServiceConfig {
+    cors: {
+        allowOrigins: ["*"]
+    }
+}
+
 service /notification on new http:Listener(8080) {
     isolated resource function post sendNotification() returns string|error {
         slack:Message messageParams = {
