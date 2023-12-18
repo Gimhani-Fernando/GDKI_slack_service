@@ -21,7 +21,7 @@ final slack:Client slackClient = check initializeSlackClient();
     }
 }
 
-service /notification on new http:Listener(8080) {
+service /notification on new http:Listener(8083) {
     isolated resource function post sendNotification() returns string|error {
         slack:Message messageParams = {
             channelName: "gdki-grama-app-support",
